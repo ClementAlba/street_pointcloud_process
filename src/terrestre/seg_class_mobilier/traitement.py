@@ -3,11 +3,11 @@ import pdal
 import os
 import json
 
-with open("D:\calba\street_pointcloud_process\src\terrestre\seg_class_mobilier\files.json") as fls:
+with open("D:/calba/street_pointcloud_process/src/terrestre/seg_class_mobilier/files.json") as fls:
     FILES = json.load(fls)
 
 
-with open("D:/calba/street_pointcloud_process/src/terrestre/seg_class_mobilier/config.json") as cfg:
+with open(FILES['config']) as cfg:
     CONFIG = json.load(cfg)
 
 
