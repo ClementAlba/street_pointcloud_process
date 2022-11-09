@@ -3,71 +3,60 @@ import pdal
 import os
 import json
 
+with open("D:\calba\street_pointcloud_process\src\terrestre\seg_class_mobilier\files.json") as fls:
+    FILES = json.load(fls)
+
+
 with open("D:/calba/street_pointcloud_process/src/terrestre/seg_class_mobilier/config.json") as cfg:
     CONFIG = json.load(cfg)
 
 
 def merge():
     pipeline = pdal.Reader.las(filename=CONFIG["output"] + "/*.las") | pdal.Filter.merge() | pdal.Filter.sample(
-        radius=0.001) | pdal.Writer.las(filename="D:/data_dev/street_pointcloud_process/output/output.las",
+        radius=0.001) | pdal.Writer.las(filename=CONFIG['output'] + "/output.las",
                                         extra_dims="all", minor_version=4)
     pipeline.execute()
 
 
 def add_OriginId():
-    os.system("pdal-parallelizer process-pipelines -c "
-              "D:/calba/street_pointcloud_process/src/terrestre/seg_class_mobilier/config.json -it dir -nw 3 -tpw 1")
+    os.system("pdal-parallelizer process-pipelines -c " + FILES['config'] + " -it dir -nw 3 -tpw 1")
 
 
 def ground_above_ground_segmentation():
     CONFIG['input'] = CONFIG['output']
-    CONFIG['pipeline'] = "D:/calba/street_pointcloud_process/src/terrestre/seg_class_mobilier/pipelines" \
-                         "/Seg_sol_sursol.json "
+    CONFIG['pipeline'] = FILES['seg_sol_sursol']
 
-    os.system("pdal-parallelizer process-pipelines -c "
-              "D:/calba/street_pointcloud_process/src/terrestre/seg_class_mobilier/config_output.json -it dir -nw 3 "
-              "-tpw 1")
+    os.system("pdal-parallelizer process-pipelines -c " + FILES['config'] + " -it dir -nw 3 -tpw 1")
 
 
 def above_ground_segmentation():
     os.system("D:/applications/CloudCompare_2_11/CloudCompare.exe -SILENT -AUTO_SAVE OFF -o "
-              "D:/data_dev/street_pointcloud_process/output/output.las -DENSITY 0.3 -TYPE KNN -C_EXPORT_FMT LAS "
-              "-SAVE_CLOUDS FILE D:/data_dev/street_pointcloud_process/output/output.las")
+              + CONFIG['output'] + "/output.las -DENSITY 0.3 -TYPE KNN -C_EXPORT_FMT LAS "
+              "-SAVE_CLOUDS FILE " + CONFIG['output'] + "/output.las")
 
-    CONFIG['input'] = "D:/data_dev/street_pointcloud_process/output/output.las"
-    CONFIG['pipeline'] = "D:/calba/street_pointcloud_process/src/terrestre/seg_class_mobilier/pipelines/seg_sursol.json"
+    CONFIG['input'] = CONFIG['output'] + "/output.las"
+    CONFIG['pipeline'] = FILES['seg_sursol']
 
-    os.system("pdal-parallelizer process-pipelines -c "
-              "D:/calba/street_pointcloud_process/src/terrestre/seg_class_mobilier/config_sursol.json -it single -ts "
-              "1000 1000 -nw 3 -tpw 1")
+    os.system("pdal-parallelizer process-pipelines -c " + FILES['config'] + " -it single -ts 1000 1000 -nw 3 -tpw 1")
 
 
 def mobile_objects_classification():
     CONFIG['input'] = CONFIG['output']
-    CONFIG['pipeline'] = "D:/calba/street_pointcloud_process/src/terrestre/seg_class_mobilier/pipelines" \
-                         "/classification_objets_mobiles.json "
+    CONFIG['pipeline'] = FILES['classification_objets_mobiles']
 
-    os.system("pdal-parallelizer process-pipelines -c "
-              "D:/calba/street_pointcloud_process/src/terrestre/seg_class_mobilier/config_obj_mobiles.json -it dir "
-              "-nw 3 -tpw 1")
+    os.system("pdal-parallelizer process-pipelines -c " + FILES['config'] + " -it dir -nw 3 -tpw 1")
 
 
 def calculate_scattering_anisotropy():
-    CONFIG['pipeline'] = "D:/calba/street_pointcloud_process/src/terrestre/seg_class_mobilier/pipelines" \
-                         "/calcul_scattering_anisotropy.json "
+    CONFIG['pipeline'] = FILES['calcul_scattering_anisotropy']
 
-    os.system("pdal-parallelizer process-pipelines -c "
-              "D:/calba/street_pointcloud_process/src/terrestre/seg_class_mobilier/config_anisotropy.json -it dir -nw"
-              " 3 -tpw 1")
+    os.system("pdal-parallelizer process-pipelines -c " + FILES['config'] + " -it dir -nw 3 -tpw 1")
 
 
 def above_ground_classification():
-    CONFIG['pipeline'] = "D:/calba/street_pointcloud_process/src/terrestre/seg_class_mobilier/pipelines" \
-                         "/classification_sursol.json "
+    CONFIG['pipeline'] = FILES['classification_sursol']
 
-    os.system("pdal-parallelizer process-pipelines -c "
-              "D:/calba/street_pointcloud_process/src/terrestre/seg_class_mobilier/config_class_sursol.json -it dir "
-              "-nw 3 -tpw 1")
+    os.system("pdal-parallelizer process-pipelines -c " + FILES['config'] + " -it dir -nw 3 -tpw 1")
 
 
 if __name__ == "__main__":
