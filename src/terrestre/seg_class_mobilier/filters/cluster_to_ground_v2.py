@@ -1,6 +1,7 @@
 import numpy as np
 
 def cluster_to_ground(ins,outs):
+    print('debut')
     #liste ordonnée des clusters dans le nuage en entrée
     Cluster_set = set(ins['ClusterID'])
     Clusters = list(Cluster_set)

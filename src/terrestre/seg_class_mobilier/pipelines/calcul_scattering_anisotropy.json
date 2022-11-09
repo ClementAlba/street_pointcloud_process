@@ -1,7 +1,6 @@
 [
     {
         "type" : "readers.las",
-		"filename" : "__tmp__.las",
 		"extra_dims": "ClusterID = double"
     },
 	{
@@ -20,15 +19,14 @@
     },
 	{
         "type":"filters.python",
-		"script": "F:/mmorin/ndp_tests/codes/filtres.python/mean_dimensions.py",
+		"script": "D:/calba/street_pointcloud_process/src/terrestre/seg_class_mobilier/filters/mean_dimensions.py",
 		"add_dimension": "mean_anisotropy, mean_surf_var",
 		"function": "mean_dimensions",
 		"module": "anything"
     },
 	{
 		"type": "writers.las",
-		"extra_dims": ["ClusterID = double", "mean_anisotropy = double","mean_surf_var = double"],
-		"filename" : "__tmp__.las"
+		"extra_dims": ["ClusterID = double", "mean_anisotropy = double","mean_surf_var = double"]
 	}
 
 ]

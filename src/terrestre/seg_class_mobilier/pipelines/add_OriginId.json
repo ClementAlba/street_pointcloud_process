@@ -1,0 +1,19 @@
+[
+  {
+    "type": "readers.las",
+    "filename": "D:/data_dev/street_pointcloud_process/input/685000_7048000.las"
+  },
+  {
+    "type": "filters.python",
+    "script": "D:/calba/street_pointcloud_process/src/terrestre/seg_class_mobilier/filters/marquage_obj_mobiles.py",
+    "function": "marquage",
+    "module": "anything",
+    "add_dimension": "OriginId"
+  },
+  {
+    "type": "writers.las",
+    "filename": "D:/data_dev/street_pointcloud_process/output/output.las",
+    "extra_dims": "all",
+    "minor_version": 4
+  }
+]

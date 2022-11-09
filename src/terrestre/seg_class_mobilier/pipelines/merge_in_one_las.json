@@ -1,7 +1,7 @@
 [
     {
         "type" : "readers.las",
-		"filename" : "*.las",
+		"filename" : "D:/data_dev/street_pointcloud_process/input/*.las",
 		"extra_dims": "OriginId = float"
     },
 	{

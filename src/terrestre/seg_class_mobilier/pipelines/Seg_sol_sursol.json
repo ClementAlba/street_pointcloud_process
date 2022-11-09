@@ -1,7 +1,6 @@
 [
     {
         "type" : "readers.las",
-		"filename" : "corps_de_rue_base.las",
 		"extra_dims" : "OriginId = float"
     },
     {
@@ -61,15 +60,14 @@
 	},
 	{
         "type":"filters.python",
-        "script":"F:/mmorin/ndp_tests/codes/filtres.python/cluster_to_ground_v2.py",
+        "script":"D:/calba/street_pointcloud_process/src/terrestre/seg_class_mobilier/filters/cluster_to_ground_v2.py",
         "function":"cluster_to_ground",
         "module":"anything"
     },
 	{
 		"type": "writers.las",
 		"minor_version": 4,
-		"extra_dims" : "OriginId = float",
-		"filename" : "__tmp__.las"
+		"extra_dims" : "OriginId = float"
 	}
 
 ]
