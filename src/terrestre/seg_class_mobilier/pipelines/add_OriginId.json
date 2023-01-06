@@ -1,7 +1,6 @@
 [
   {
-    "type": "readers.las",
-    "filename": "D:/data_dev/street_pointcloud_process/input/685000_7048000.las"
+    "type": "readers.las"
   },
   {
     "type": "filters.python",
@@ -12,7 +11,6 @@
   },
   {
     "type": "writers.las",
-    "filename": "D:/data_dev/street_pointcloud_process/output/output.las",
     "extra_dims": "all",
     "minor_version": 4
   }

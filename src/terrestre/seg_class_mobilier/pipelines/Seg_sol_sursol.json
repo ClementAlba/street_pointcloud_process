@@ -3,17 +3,14 @@
         "type" : "readers.las",
 		"extra_dims" : "OriginId = float"
     },
-    {
-        "type":"filters.csf",
-		"resolution": 0.3,
-		"threshold": 0.2,
-		"rigidness": 1
-		
-    },
 	{
-        "type" : "filters.neighborclassifier",
-        "domain" : "Classification[1:2]",
-        "k" : 50
+        "type":"filters.csf",
+        "resolution":0.5,
+		"threshold":0.5,
+		"smooth":"true",
+		"step":0.4,
+		"rigidness":2,
+		"iterations":500
     },
 	{
         "type" : "filters.neighborclassifier",
@@ -24,12 +21,11 @@
         "type":"filters.covariancefeatures",
 		"where": "(Classification==2)",
         "radius": 0.05,
-        "threads": 20,
         "feature_set": "Verticality,Anisotropy"
     },
 	{
         "type": "filters.assign",
-        "value": "Classification = 13 WHERE ((Classification == 2) && (Verticality >= 0.5) && (Anisotropy) >= 0.7)"
+        "value": "Classification = 13 WHERE ((Classification == 2) && (Verticality >= 0.5) && (Anisotropy >= 0.7))"
 	},
 	{
         "type" : "filters.neighborclassifier",
@@ -69,5 +65,4 @@
 		"minor_version": 4,
 		"extra_dims" : "OriginId = float"
 	}
-
 ]

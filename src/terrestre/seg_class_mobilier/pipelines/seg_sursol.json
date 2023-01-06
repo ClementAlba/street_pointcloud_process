@@ -1,11 +1,11 @@
 [
   {
     "type": "readers.las",
-    "extra_dims": "Number of neighbors (r_0.3) = int64_t"
+    "extra_dims": "Number_of_neighbors = int64_t"
   },
   {
     "type": "filters.cluster",
-    "where": "(Classification==1) && (Number__of__neighbors___r_eq_0_3 > 20)",
+    "where": "(Classification==1) && (Number_of_neighbors__r_0_3_ > 20)",
     "tolerance": 0.30,
     "min_points": 100
   },
