@@ -19,7 +19,7 @@ def init_dict_clusters_link(cluster_list):
     return cluster_dict
 
 def mobile_objects_classification(ins, outs):
-    
+
     #print(ins)
     
     #Classification à 66 des clusters conteant des points provenant d'une seule source
@@ -47,10 +47,10 @@ def mobile_objects_classification(ins, outs):
         if sources[int(dict_num_indice[ins['ClusterID'][i]])][1] != ins['OriginId'][i]:
             sources[int(dict_num_indice[ins['ClusterID'][i]])][1] = ins['OriginId'][i]
             sources[int(dict_num_indice[ins['ClusterID'][i]])][2] += 1
-    
+
     #print(sources)
     for i in range (0, n_points):
-    
+
         if sources[int(dict_num_indice[ins['ClusterID'][i]])][2] == 1:
             ins['Classification'][i] = 66
         

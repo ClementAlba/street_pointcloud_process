@@ -1,0 +1,9 @@
+{
+  "config": "D:\\calba\\street_pointcloud_process\\src\\terrestre\\seg_class_mobilier\\config.json",
+  "originid": "D:\\calba\\street_pointcloud_process\\src\\terrestre\\seg_class_mobilier\\pipelines\\add_OriginId.json",
+  "seg_sol_sursol": "D:\\calba\\street_pointcloud_process\\src\\terrestre\\seg_class_mobilier\\pipelines\\Seg_sol_sursol.json",
+  "seg_sursol": "D:\\calba\\street_pointcloud_process\\src\\terrestre\\seg_class_mobilier\\pipelines\\seg_sursol.json",
+  "classification_objets_mobiles": "D:\\calba\\street_pointcloud_process\\src\\terrestre\\seg_class_mobilier\\pipelines\\classification_objets_mobiles.json",
+  "calcul_scattering_anisotropy": "D:\\calba\\street_pointcloud_process\\src\\terrestre\\seg_class_mobilier\\pipelines\\calcul_scattering_anisotropy.json",
+  "classification_sursol": "D:\\calba\\street_pointcloud_process\\src\\terrestre\\seg_class_mobilier\\pipelines\\classification_sursol.json"
+}
