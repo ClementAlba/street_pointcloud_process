@@ -56,7 +56,7 @@ def above_ground_segmentation():
         if f != "output.las":
             os.remove(os.path.join(CONFIG['output'], f))
 
-    os.system("pdal-parallelizer process-pipelines -c " + FILES['config'] + " -it single -ts 30 30 -nw 3 -tpw 1")
+    os.system("pdal-parallelizer process-pipelines -c " + FILES['config'] + " -it single -ts 20 20 -nw 5 -tpw 1")
 
     os.remove(os.path.join(CONFIG['output'], 'output.las'))
 
@@ -69,7 +69,7 @@ def mobile_objects_classification():
 
     write_json(CONFIG)
 
-    os.system("pdal-parallelizer process-pipelines -c " + FILES['config'] + " -it dir -nw 3 -tpw 1")
+    os.system("pdal-parallelizer process-pipelines -c " + FILES['config'] + " -it dir -nw 5 -tpw 1")
 
 
 def calculate_scattering_anisotropy():
@@ -80,7 +80,7 @@ def calculate_scattering_anisotropy():
 
     write_json(CONFIG)
 
-    os.system("pdal-parallelizer process-pipelines -c " + FILES['config'] + " -it dir -nw 3 -tpw 1")
+    os.system("pdal-parallelizer process-pipelines -c " + FILES['config'] + " -it dir -nw 5 -tpw 1")
 
 
 def above_ground_classification():
@@ -90,7 +90,7 @@ def above_ground_classification():
 
     write_json(CONFIG)
 
-    os.system("pdal-parallelizer process-pipelines -c " + FILES['config'] + " -it dir -nw 3 -tpw 1")
+    os.system("pdal-parallelizer process-pipelines -c " + FILES['config'] + " -it dir -nw 5 -tpw 1")
 
 
 if __name__ == "__main__":

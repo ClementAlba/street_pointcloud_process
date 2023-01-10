@@ -6,13 +6,13 @@
 	{
         "type":"filters.covariancefeatures",
 		"where": "(Classification==1) && (ClusterID != 0)",
-        "knn": 10,
+        "knn": 100,
         "feature_set": "Anisotropy"
     },
 	{
         "type":"filters.covariancefeatures",
 		"where": "(Classification==1) && (ClusterID != 0)",
-        "radius": 0.15,
+        "radius": 0.3,
         "feature_set": "SurfaceVariation"
     },
 	{

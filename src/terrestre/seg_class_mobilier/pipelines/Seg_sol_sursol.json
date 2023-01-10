@@ -20,7 +20,7 @@
 	{
         "type":"filters.covariancefeatures",
 		"where": "(Classification==2)",
-        "radius": 0.05,
+        "radius": 0.1,
         "feature_set": "Verticality,Anisotropy"
     },
 	{
