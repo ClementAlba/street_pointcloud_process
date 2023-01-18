@@ -1,7 +1,10 @@
-import numpy
 import pdal
 import os
 import json
+from pdal_parallelizer import process_pipelines as process
+
+N_WORKERS = 7
+TIMEOUT = 500
 
 with open("D:/calba/street_pointcloud_process/src/terrestre/seg_class_mobilier/files.json") as fls:
     FILES = json.load(fls)
@@ -26,7 +29,9 @@ def merge():
 def add_OriginId():
     print("\n ====== ADDING ORIGIN_ID DIMENSION ====== \n")
 
-    os.system("pdal-parallelizer process-pipelines -c " + FILES['config'] + " -it dir -nw 5 -tpw 1")
+    process(config=FILES['config'], timeout=TIMEOUT, input_type="single", tile_size=(20, 20), n_workers=N_WORKERS)
+
+    # os.system("pdal-parallelizer process-pipelines -c " + FILES['config'] + " -it dir -nw 5 -tpw 1")
 
 
 def ground_above_ground_segmentation():
@@ -37,7 +42,9 @@ def ground_above_ground_segmentation():
 
     write_json(CONFIG)
 
-    os.system("pdal-parallelizer process-pipelines -c " + FILES['config'] + " -it dir -nw 5 -tpw 1")
+    process(config=FILES['config'], timeout=TIMEOUT, input_type="dir", n_workers=N_WORKERS)
+
+    # os.system("pdal-parallelizer process-pipelines -c " + FILES['config'] + " -it dir -nw 5 -tpw 1")
 
 
 def above_ground_segmentation():
@@ -56,7 +63,9 @@ def above_ground_segmentation():
         if f != "output.las":
             os.remove(os.path.join(CONFIG['output'], f))
 
-    os.system("pdal-parallelizer process-pipelines -c " + FILES['config'] + " -it single -ts 20 20 -nw 5 -tpw 1")
+    process(config=FILES['config'], timeout=TIMEOUT, input_type="single", tile_size=(20, 20), n_workers=N_WORKERS)
+
+    # os.system("pdal-parallelizer process-pipelines -c " + FILES['config'] + " -it single -ts 20 20 -nw 5 -tpw 1")
 
     os.remove(os.path.join(CONFIG['output'], 'output.las'))
 
@@ -69,7 +78,9 @@ def mobile_objects_classification():
 
     write_json(CONFIG)
 
-    os.system("pdal-parallelizer process-pipelines -c " + FILES['config'] + " -it dir -nw 5 -tpw 1")
+    process(config=FILES['config'], timeout=TIMEOUT, input_type="dir", n_workers=N_WORKERS)
+
+    # os.system("pdal-parallelizer process-pipelines -c " + FILES['config'] + " -it dir -nw 5 -tpw 1")
 
 
 def calculate_scattering_anisotropy():
@@ -80,7 +91,9 @@ def calculate_scattering_anisotropy():
 
     write_json(CONFIG)
 
-    os.system("pdal-parallelizer process-pipelines -c " + FILES['config'] + " -it dir -nw 5 -tpw 1")
+    process(config=FILES['config'], timeout=TIMEOUT, input_type="dir", n_workers=N_WORKERS)
+
+    # os.system("pdal-parallelizer process-pipelines -c " + FILES['config'] + " -it dir -nw 5 -tpw 1")
 
 
 def above_ground_classification():
@@ -90,7 +103,9 @@ def above_ground_classification():
 
     write_json(CONFIG)
 
-    os.system("pdal-parallelizer process-pipelines -c " + FILES['config'] + " -it dir -nw 5 -tpw 1")
+    process(config=FILES['config'], timeout=TIMEOUT, input_type="dir", n_workers=N_WORKERS)
+
+    # os.system("pdal-parallelizer process-pipelines -c " + FILES['config'] + " -it dir -nw 5 -tpw 1")
 
 
 if __name__ == "__main__":
