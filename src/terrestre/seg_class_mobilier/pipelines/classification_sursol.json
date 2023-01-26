@@ -12,7 +12,8 @@
     },
 	{
 		"type": "writers.las",
-		"extra_dims": ["ClusterID = double"]
+		"extra_dims": ["ClusterID = double"],
+		"minor_version": 4
 	}
 
 ]

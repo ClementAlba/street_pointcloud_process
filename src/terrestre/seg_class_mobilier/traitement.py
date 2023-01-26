@@ -3,7 +3,7 @@ import os
 import json
 from pdal_parallelizer import process_pipelines as process
 
-N_WORKERS = 7
+N_WORKERS = 9
 TIMEOUT = 500
 
 with open("D:/calba/street_pointcloud_process/src/terrestre/seg_class_mobilier/files.json") as fls:
@@ -21,15 +21,16 @@ def write_json(data):
 def merge():
     print("\n ====== MERGING ====== \n")
 
-    pipeline = pdal.Reader.las(filename=CONFIG["output"] + "/*.las") | pdal.Filter.merge() | pdal.Writer.las(filename=CONFIG['output'] + "/output.las",
-                                        extra_dims="all", minor_version=4)
+    pipeline = pdal.Reader.las(filename=CONFIG["output"] + "/*.las") | pdal.Filter.merge() | pdal.Writer.las(
+        filename=CONFIG['output'] + "/output.las",
+        extra_dims="all", minor_version=4)
     pipeline.execute()
 
 
 def add_OriginId():
     print("\n ====== ADDING ORIGIN_ID DIMENSION ====== \n")
 
-    process(config=FILES['config'], timeout=TIMEOUT, input_type="single", tile_size=(20, 20), n_workers=N_WORKERS)
+    process(config=FILES['config'], timeout=TIMEOUT, input_type="single", tile_size=(40, 40), n_workers=N_WORKERS)
 
     # os.system("pdal-parallelizer process-pipelines -c " + FILES['config'] + " -it dir -nw 5 -tpw 1")
 
@@ -63,7 +64,7 @@ def above_ground_segmentation():
         if f != "output.las":
             os.remove(os.path.join(CONFIG['output'], f))
 
-    process(config=FILES['config'], timeout=TIMEOUT, input_type="single", tile_size=(20, 20), n_workers=N_WORKERS)
+    process(config=FILES['config'], timeout=TIMEOUT, input_type="single", tile_size=(40, 40), n_workers=N_WORKERS)
 
     # os.system("pdal-parallelizer process-pipelines -c " + FILES['config'] + " -it single -ts 20 20 -nw 5 -tpw 1")
 
@@ -109,11 +110,12 @@ def above_ground_classification():
 
 
 if __name__ == "__main__":
-    add_OriginId()
-    ground_above_ground_segmentation()
-    merge()
-    above_ground_segmentation()
-    mobile_objects_classification()
+    # add_OriginId()
+    # ground_above_ground_segmentation()
+    # merge()
+    # above_ground_segmentation()
+    # mobile_objects_classification()
+    # Étape qui pose problème
     calculate_scattering_anisotropy()
     above_ground_classification()
     merge()

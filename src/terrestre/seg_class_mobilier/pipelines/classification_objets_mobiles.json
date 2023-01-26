@@ -1,7 +1,7 @@
 [
     {
         "type" : "readers.las",
-		"extra_dims": "ClusterID = int64_t, OriginId = float"
+		"extra_dims": ["ClusterID = double", "OriginId = float"]
     },
 	{
         "type":"filters.python",
@@ -12,6 +12,7 @@
     },
 	{
 		"type": "writers.las",
-		"extra_dims":"ClusterID = int64_t"
+		"extra_dims":"ClusterID = double",
+		"minor_version": 4
 	}
 ]

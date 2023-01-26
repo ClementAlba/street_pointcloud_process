@@ -6,13 +6,13 @@
 	{
         "type":"filters.covariancefeatures",
 		"where": "(Classification==1) && (ClusterID != 0)",
-        "knn": 100,
+        "knn": 10,
         "feature_set": "Anisotropy"
     },
 	{
         "type":"filters.covariancefeatures",
 		"where": "(Classification==1) && (ClusterID != 0)",
-        "radius": 0.3,
+        "radius": 0.15,
         "feature_set": "SurfaceVariation"
     },
 	{
@@ -24,7 +24,8 @@
     },
 	{
 		"type": "writers.las",
-		"extra_dims": ["ClusterID = double", "mean_anisotropy = double","mean_surf_var = double"]
+		"extra_dims": ["ClusterID = double", "mean_anisotropy = double","mean_surf_var = double"],
+		"minor_version": 4
 	}
 
 ]
