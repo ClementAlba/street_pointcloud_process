@@ -1,7 +1,7 @@
 [
   {
     "type": "readers.las",
-    "extra_dims": "Number_of_neighbors = int64_t"
+    "extra_dims": "Number_of_neighbors (r_0.3) = int64_t, OriginId = float"
   },
   {
     "type": "filters.cluster",
@@ -16,7 +16,7 @@
   {
     "type": "filters.python",
     "where": "(ClusterID != 0)",
-    "script": "D:/calba/street_pointcloud_process/src/terrestre/seg_class_mobilier/filters/flying_cluster.py",
+    "script": "D:\\calba\\street_pointcloud_process\\src\\terrestre\\seg_class_mobilier\\filters\\flying_cluster.py",
     "function": "flying_cluster",
     "module": "anything"
   },

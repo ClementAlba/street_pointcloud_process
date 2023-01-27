@@ -30,6 +30,10 @@ def merge():
 def add_OriginId():
     print("\n ====== ADDING ORIGIN_ID DIMENSION ====== \n")
 
+    CONFIG['pipeline'] = FILES['originid']
+
+    write_json(CONFIG)
+
     process(config=FILES['config'], timeout=TIMEOUT, input_type="single", tile_size=(40, 40), n_workers=N_WORKERS)
 
     # os.system("pdal-parallelizer process-pipelines -c " + FILES['config'] + " -it dir -nw 5 -tpw 1")
@@ -110,11 +114,11 @@ def above_ground_classification():
 
 
 if __name__ == "__main__":
-    # add_OriginId()
-    # ground_above_ground_segmentation()
-    # merge()
-    # above_ground_segmentation()
-    # mobile_objects_classification()
+    add_OriginId()
+    ground_above_ground_segmentation()
+    merge()
+    above_ground_segmentation()
+    mobile_objects_classification()
     # Étape qui pose problème
     calculate_scattering_anisotropy()
     above_ground_classification()

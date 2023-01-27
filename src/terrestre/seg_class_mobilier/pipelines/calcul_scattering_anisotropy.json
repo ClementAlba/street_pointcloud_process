@@ -17,15 +17,14 @@
     },
 	{
         "type":"filters.python",
-		"script": "D:/calba/street_pointcloud_process/src/terrestre/seg_class_mobilier/filters/mean_dimensions.py",
+		"script": "D:\\calba\\street_pointcloud_process\\src\\terrestre\\seg_class_mobilier\\filters\\mean_dimensions.py",
 		"add_dimension": "mean_anisotropy, mean_surf_var",
 		"function": "mean_dimensions",
 		"module": "anything"
     },
 	{
 		"type": "writers.las",
-		"extra_dims": ["ClusterID = double", "mean_anisotropy = double","mean_surf_var = double"],
-		"minor_version": 4
+		"extra_dims": ["ClusterID = double", "mean_anisotropy = double","mean_surf_var = double"]
 	}
 
 ]

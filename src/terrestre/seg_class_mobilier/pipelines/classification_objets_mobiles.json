@@ -5,14 +5,13 @@
     },
 	{
         "type":"filters.python",
-		"script": "D:/calba/street_pointcloud_process/src/terrestre/seg_class_mobilier/filters/mobile_objects_classification.py",
+		"script": "D:\\calba\\street_pointcloud_process\\src\\terrestre\\seg_class_mobilier\\filters\\mobile_objects_classification.py",
 		"function": "mobile_objects_classification",
 		"where": "(Classification != 2) && (Classification != 65) ",
 		"module": "anything"
     },
 	{
 		"type": "writers.las",
-		"extra_dims":"ClusterID = double",
-		"minor_version": 4
+		"extra_dims":"ClusterID = double"
 	}
 ]

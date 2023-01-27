@@ -1,6 +1,7 @@
 [
     {
         "type" : "readers.las",
+		"filename" : "corps_de_rue_base.las",
 		"extra_dims" : "OriginId = float"
     },
     {
@@ -66,7 +67,8 @@
 	{
 		"type": "writers.las",
 		"minor_version": 4,
-		"extra_dims" : "OriginId = float"
+		"extra_dims" : "OriginId = float",
+		"filename" : "__tmp__.las"
 	}
 
 ]

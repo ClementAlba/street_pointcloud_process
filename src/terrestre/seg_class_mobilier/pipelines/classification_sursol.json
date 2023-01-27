@@ -5,15 +5,14 @@
     },
 	{
         "type":"filters.python",
-		"script": "D:/calba/street_pointcloud_process/src/terrestre/seg_class_mobilier/filters/global_descriptors_tranfo_meth.py",
+		"script": "D:\\calba\\street_pointcloud_process\\src\\terrestre\\seg_class_mobilier\\filters\\global_descriptors_tranfo_meth.py",
 		"function": "global_descriptors_transfo_method",
 		"where": "(Classification == 1) && (ClusterID != 0)",
 		"module": "anything"
     },
 	{
 		"type": "writers.las",
-		"extra_dims": ["ClusterID = double"],
-		"minor_version": 4
+		"extra_dims": ["ClusterID = double"]
 	}
 
 ]
